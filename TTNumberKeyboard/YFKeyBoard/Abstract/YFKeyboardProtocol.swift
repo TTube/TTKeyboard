@@ -95,7 +95,7 @@ protocol YFKeyboardViewModel {
 
 protocol YFKeyboardViewProtocol {
     var viewModel: YFKeyboardViewModel? { get set }
-    func refresh(_ vm: YFKeyboardViewModel)
+    func refresh(_ vm: YFKeyboardViewModel, clear: Bool)
 }
 
 extension YFKeyboardViewModel {
@@ -113,6 +113,10 @@ extension YFKeyboardViewModel {
 extension YFKeyboardViewProtocol {
     var keyboardHeight: CGFloat {
         return viewModel?.totalHeight ?? 0
+    }
+    
+    func refresh(_ vm: YFKeyboardViewModel, clear: Bool) {
+        
     }
 }
 

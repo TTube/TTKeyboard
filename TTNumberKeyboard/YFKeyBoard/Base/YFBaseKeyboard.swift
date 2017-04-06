@@ -28,7 +28,10 @@ protocol YFExpectViewType {
 class YFBaseKeyboardLine: UIView, YFKeyboardLineViewProtocol {
     private func setupKeys() {
         keyViews.forEach { (view) in
-            view.removeFromSuperview()
+            if let keyView = view as? UIView {
+                keyView.removeFromSuperview()
+            }
+            
         }
         keyViews.removeAll()
         guard let lineVM = viewModel else { return }
@@ -37,10 +40,13 @@ class YFBaseKeyboardLine: UIView, YFKeyboardLineViewProtocol {
         let startY = lineVM.padding.top
         for keyVM in lineVM.keys {
             guard let type = expectKeyView(with: keyVM) else { continue }
-            guard let view = type.getView() as? YFBaseKeyboardKey else { continue }
+            let view = type.getView()
+            guard view is YFInputKeyViewProtocol else { continue }
             addSubview(view)
             view.frame = CGRect(x: startX + keyVM.margin.left, y: startY + keyVM.margin.top, width: keyVM.expectSize.width, height: keyVM.expectSize.height)
             startX += keyVM.totalSize.width
+            //view must has confirmed YFInputKeyViewProtocol when run to this line
+            keyViews.append(view as! YFInputKeyViewProtocol)
         }
     }
     
@@ -61,7 +67,7 @@ class YFBaseKeyboardLine: UIView, YFKeyboardLineViewProtocol {
     
     //MARK: proprety
     var viewModel: YFKeyboardLineViewModel?
-    var keyViews = [YFBaseKeyboardKey]()
+    var keyViews = [YFInputKeyViewProtocol]()
 }
 
 class YFBaseKeyboard: UIInputView, YFKeyboardViewProtocol {
@@ -75,10 +81,15 @@ class YFBaseKeyboard: UIInputView, YFKeyboardViewProtocol {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func refresh(_ vm: YFKeyboardViewModel) {
+    private func setupupLines() {
+        
+    }
+    
+    func refresh(_ vm: YFKeyboardViewModel, clear: Bool = false) {
         viewModel = vm
     }
     
     var viewModel: YFKeyboardViewModel?
+    var lineViews = [YFKeyboardLineViewProtocol]()
     
 }
