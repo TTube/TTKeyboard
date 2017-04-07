@@ -12,7 +12,7 @@ class TTTextFIeld: UITextField {
 
     override var inputViewController: UIInputViewController? {
         get {
-            return YFInputViewController()
+            return KeyboardType.numberPad.inputController()
         }
     }
 }

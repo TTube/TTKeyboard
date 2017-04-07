@@ -11,7 +11,16 @@ import UIKit
 
 typealias InputAction = () -> ()
 
+//MARK: ViewModel
+
 protocol YFInputKeyType {}
+
+protocol YFExpectViewType {
+    var viewClass: AnyClass { get }
+    func getView() -> UIView
+}
+
+protocol YFKeyboardBaseViewModel {}
 
 /// description of keyboard's every key
 protocol YFInputKey {
@@ -19,7 +28,8 @@ protocol YFInputKey {
 }
 
 
-protocol YFInputKeyViewModel: YFInputKey {
+/// description of keyboard's every key‘s layout
+protocol YFInputKeyViewModel: YFInputKey, YFKeyboardBaseViewModel, YFExpectViewType {
     var expectSize: CGSize { get set }
     var margin: UIEdgeInsets { get set }
 }
@@ -34,25 +44,20 @@ extension YFInputKeyViewModel {
     }
 }
 
-
-protocol YFInputKeyViewProtocol {
-    var viewModel: YFInputKeyViewModel? { get set }
-    func refresh(_  vm: YFInputKeyViewModel)
-}
-
-extension YFInputKeyViewProtocol {
-    func refresh(_  vm: YFInputKeyViewModel) {}
-}
-
-
+//for each keyboard line, this enum describe its horizontal position in superView
 enum YFKeyboardLineHorizontalAlign {
     case left, center, right
 }
 
 
-protocol YFKeyboardLineViewModel {
+/// keyboard line ViewModel
+protocol YFKeyboardLineViewModel: YFExpectViewType, YFKeyboardBaseViewModel {
     var horizontalAlign: YFKeyboardLineHorizontalAlign { get set }
+    
+    /// every key will show on current keyboard line
     var keys: [YFInputKeyViewModel] { get set }
+    
+    //line padding
     var padding: UIEdgeInsets { get set }
 }
 
@@ -76,33 +81,16 @@ extension YFKeyboardLineViewModel {
 }
 
 
-protocol YFKeyboardLineViewProtocol {
-    var viewModel: YFKeyboardLineViewModel? { get set }
-    func refresh(_ vm: YFKeyboardLineViewModel, clear: Bool)
-}
-
-extension YFKeyboardLineViewProtocol {
-    var lineSize: CGSize {
-        return viewModel?.lineSize ?? .zero
-    }
-    
-    func refresh(_ vm: YFKeyboardLineViewModel, clear: Bool = false) {}
-}
-
-protocol YFKeyboardViewModel {
+protocol YFKeyboardViewModel: YFExpectViewType, YFKeyboardBaseViewModel {
+    /// every line will show on keyboard
     var lines: [YFKeyboardLineViewModel] { get set }
-}
-
-protocol YFKeyboardViewProtocol {
-    var viewModel: YFKeyboardViewModel? { get set }
-    func refresh(_ vm: YFKeyboardViewModel, clear: Bool)
 }
 
 extension YFKeyboardViewModel {
     var totalSize: CGSize {
         get {
            return lines.reduce(CGSize.zero, { (last, element) -> CGSize in
-            return CGSize(width: max(last.width, element.lineSize.width), height: element.lineSize.height)
+            return CGSize(width: max(last.width, element.lineSize.width), height: last.height + element.lineSize.height)
            })
         }
         
@@ -110,12 +98,16 @@ extension YFKeyboardViewModel {
 }
 
 
-extension YFKeyboardViewProtocol {
-    var keyboardSize: CGSize {
-        return viewModel?.totalSize ?? .zero
-    }
+//MARK: Keyboard view
+protocol SizeExpectable {
+    func expectSize() -> CGSize
+}
+
+
+protocol YFKeyboardSubview: SizeExpectable {
+    var viewModel: YFKeyboardBaseViewModel? { get set }
+    func refresh(_ vm: YFKeyboardBaseViewModel, clear: Bool)
     
-    func refresh(_ vm: YFKeyboardViewModel, clear: Bool = false) {}
 }
 
 

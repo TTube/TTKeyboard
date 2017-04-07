@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'CA402A13A72BA99FCD6C9ADF'
-               BlueprintName = 'Pods-TTNumberKeyboard'
+               BlueprintIdentifier = 'FF0C0894738E2B4954396F3721EE90F8'
+               BlueprintName = 'SnapKit'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods_TTNumberKeyboard.framework'>
+               BuildableName = 'SnapKit.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
