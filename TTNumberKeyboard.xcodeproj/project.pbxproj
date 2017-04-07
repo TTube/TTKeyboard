@@ -17,6 +17,7 @@
 		3AF6DE4B1E962D2100345854 /* YFNumberPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF6DE4A1E962D2100345854 /* YFNumberPadView.swift */; };
 		3AF6DE4E1E9631B000345854 /* YFKeyboardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF6DE4D1E9631B000345854 /* YFKeyboardProtocol.swift */; };
 		3AF6DE511E963B6600345854 /* YFBaseKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF6DE501E963B6600345854 /* YFBaseKeyboard.swift */; };
+		58117FDFDE1A86D6889AE313 /* Pods_TTNumberKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A9FD8BC736B2FB5ED59800 /* Pods_TTNumberKeyboard.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,9 @@
 		3AF6DE4A1E962D2100345854 /* YFNumberPadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFNumberPadView.swift; sourceTree = "<group>"; };
 		3AF6DE4D1E9631B000345854 /* YFKeyboardProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFKeyboardProtocol.swift; sourceTree = "<group>"; };
 		3AF6DE501E963B6600345854 /* YFBaseKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFBaseKeyboard.swift; sourceTree = "<group>"; };
+		51A9FD8BC736B2FB5ED59800 /* Pods_TTNumberKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TTNumberKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		554A33807245254295A6B0C5 /* Pods-TTNumberKeyboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTNumberKeyboard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TTNumberKeyboard/Pods-TTNumberKeyboard.debug.xcconfig"; sourceTree = "<group>"; };
+		AD2518C8B1A2D70B3EAF4E39 /* Pods-TTNumberKeyboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTNumberKeyboard.release.xcconfig"; path = "Pods/Target Support Files/Pods-TTNumberKeyboard/Pods-TTNumberKeyboard.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58117FDFDE1A86D6889AE313 /* Pods_TTNumberKeyboard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +55,8 @@
 			children = (
 				3AF6DE311E96165900345854 /* TTNumberKeyboard */,
 				3AF6DE301E96165900345854 /* Products */,
+				4CCAE5FCFB86A95CB4C85525 /* Pods */,
+				A7E1F987060B26C98694570F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +118,23 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		4CCAE5FCFB86A95CB4C85525 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				554A33807245254295A6B0C5 /* Pods-TTNumberKeyboard.debug.xcconfig */,
+				AD2518C8B1A2D70B3EAF4E39 /* Pods-TTNumberKeyboard.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A7E1F987060B26C98694570F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				51A9FD8BC736B2FB5ED59800 /* Pods_TTNumberKeyboard.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,9 +142,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3AF6DE411E96165900345854 /* Build configuration list for PBXNativeTarget "TTNumberKeyboard" */;
 			buildPhases = (
+				F71685693AFB91F821BAADAA /* Check Pods Manifest.lock */,
 				3AF6DE2B1E96165900345854 /* Sources */,
 				3AF6DE2C1E96165900345854 /* Frameworks */,
 				3AF6DE2D1E96165900345854 /* Resources */,
+				AF23AA41EB142E4F9E900424 /* Embed Pods Frameworks */,
+				62B611293718E1ED04409A3F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -177,6 +204,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		62B611293718E1ED04409A3F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TTNumberKeyboard/Pods-TTNumberKeyboard-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF23AA41EB142E4F9E900424 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TTNumberKeyboard/Pods-TTNumberKeyboard-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F71685693AFB91F821BAADAA /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3AF6DE2B1E96165900345854 /* Sources */ = {
@@ -310,6 +385,7 @@
 		};
 		3AF6DE421E96165900345854 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 554A33807245254295A6B0C5 /* Pods-TTNumberKeyboard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TTNumberKeyboard/Info.plist;
@@ -322,6 +398,7 @@
 		};
 		3AF6DE431E96165900345854 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD2518C8B1A2D70B3EAF4E39 /* Pods-TTNumberKeyboard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TTNumberKeyboard/Info.plist;
@@ -351,6 +428,7 @@
 				3AF6DE431E96165900345854 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

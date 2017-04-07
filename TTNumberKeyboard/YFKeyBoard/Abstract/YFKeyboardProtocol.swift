@@ -82,8 +82,8 @@ protocol YFKeyboardLineViewProtocol {
 }
 
 extension YFKeyboardLineViewProtocol {
-    var lineHeight: CGFloat {
-        return viewModel?.lineSize.height ?? 0
+    var lineSize: CGSize {
+        return viewModel?.lineSize ?? .zero
     }
     
     func refresh(_ vm: YFKeyboardLineViewModel, clear: Bool = false) {}
@@ -99,10 +99,10 @@ protocol YFKeyboardViewProtocol {
 }
 
 extension YFKeyboardViewModel {
-    var totalHeight: CGFloat {
+    var totalSize: CGSize {
         get {
-           return lines.reduce(0, { (last, element) -> CGFloat in
-            return last + element.lineSize.height
+           return lines.reduce(CGSize.zero, { (last, element) -> CGSize in
+            return CGSize(width: max(last.width, element.lineSize.width), height: element.lineSize.height)
            })
         }
         
@@ -111,13 +111,11 @@ extension YFKeyboardViewModel {
 
 
 extension YFKeyboardViewProtocol {
-    var keyboardHeight: CGFloat {
-        return viewModel?.totalHeight ?? 0
+    var keyboardSize: CGSize {
+        return viewModel?.totalSize ?? .zero
     }
     
-    func refresh(_ vm: YFKeyboardViewModel, clear: Bool) {
-        
-    }
+    func refresh(_ vm: YFKeyboardViewModel, clear: Bool = false) {}
 }
 
 

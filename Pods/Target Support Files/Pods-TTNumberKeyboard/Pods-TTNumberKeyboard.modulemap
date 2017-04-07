@@ -1,0 +1,6 @@
+framework module Pods_TTNumberKeyboard {
+  umbrella header "Pods-TTNumberKeyboard-umbrella.h"
+
+  export *
+  module * { export * }
+}

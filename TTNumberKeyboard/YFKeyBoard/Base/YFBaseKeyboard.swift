@@ -70,10 +70,11 @@ class YFBaseKeyboardLine: UIView, YFKeyboardLineViewProtocol {
     var keyViews = [YFInputKeyViewProtocol]()
 }
 
-class YFBaseKeyboard: UIInputView, YFKeyboardViewProtocol {
+class YFBaseKeyboard: UIView, YFKeyboardViewProtocol {
 
     init(_ vm: YFKeyboardViewModel) {
-        super.init(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: vm.totalHeight), inputViewStyle: .default)
+        super.init(frame: CGRect.init(x: 0, y: 0, width: vm.totalSize.width, height: vm.totalSize.height))
+        viewModel = vm
         
     }
     
@@ -81,12 +82,21 @@ class YFBaseKeyboard: UIInputView, YFKeyboardViewProtocol {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupupLines() {
+    private func setupLines() {
         
     }
     
     func refresh(_ vm: YFKeyboardViewModel, clear: Bool = false) {
         viewModel = vm
+        if clear || lineViews.isEmpty || lineViews.count != vm.lines.count {
+            setupLines()
+        }
+        
+        for (index, view) in lineViews.enumerated() {
+            guard index < vm.lines.count else { break }
+            view.refresh(vm.lines[index])
+        }
+        
     }
     
     var viewModel: YFKeyboardViewModel?
